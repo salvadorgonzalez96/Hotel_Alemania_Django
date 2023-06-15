@@ -1,0 +1,102 @@
+<html>
+{% extends "base.html" %}
+
+
+{% block title %}
+Rooms-HotelAlemania
+{% endblock%}
+<head>
+
+<script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+
+<!--<link rel="stylesheet" href="Datatables/datatables.css"> -->
+
+<script type="text/javascript" charset="utf8" src="{% static 'Datatables/datatables.js' %}"></script>
+<script type="text/javascript" language="javascript" src="{% static 'Datatables/dataTables.buttons.min.js' %}"></script>
+<script type="text/javascript" language="javascript" src="{% static 'Datatables/jszip.min.js' %}"></script>
+<script type="text/javascript" language="javascript" src="{% static 'Datatables/pdfmake.min.js' %}"></script>
+<script type="text/javascript" language="javascript" src="{% static 'Datatables/vfs_fonts.js' %}"></script>
+<script type="text/javascript" language="javascript" src="{% static 'Datatables/buttons.html5.min.js' %}"></script>
+
+<script type="text/javascript">
+$(document).ready( function () 
+{
+	$('#tabla').dataTable( 
+    {
+    			"aaSorting": [],
+    			dom: 'Bfrtip',
+    			"pageLength": 20,
+    			buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            /*'csvHtml5',*/
+            'pdfHtml5'],
+      			"rowCallback": function( row, data, index ) 
+      			{   
+          $('td', row).css('font', '12px Arial, sans-serif');//Tamano de Letras y Fuente
+          $('td', row).css('font-weight', 'bold');//Negrita
+          $('td', row).css('background-color', '#A9F5BC');//Color del Fondo (Background)
+          $('td', row).css('color', '#151515');//Color de Letras (Foreground)
+
+          			if ( data[6] == "PENDIENTE" )//Sombrear algo en especifico de acuerdo a la columna
+        			{
+        				$('td', row).css('background-color', '#EBE252');//Color del Fondo
+          				$('td', row).css('color', 'black');//Color de Letras
+        			}
+      			}
+    		});
+ });
+    </script>
+	<!------------------------------------->
+
+</head>
+
+{% block content %}
+<body>
+    <div id="main-content">
+        <div align="center"><h1><b>Listado de Habitaciones</b></h1></div>
+    <!-- <center>
+        <table>
+        <div style="text-align:center"><tr>
+            <td><b><h4>Codigo</h4></b></td>
+            <td><b><h4>Tipo</h4></b></td>
+            <td><b><h4>Estado</h4></b></td>
+            <td><b><h4>Descripcion</h4></b></td>
+        </tr>
+        </div>
+        {% for room in rooms %}
+            <tr>
+                <td><h5>{{ room.habitacion_codigo }} </h5></td>
+                <td><h5> {{ room.habitacion_tipo }} </h5></td>
+                <td><h5> {{ room.habitacion_estado }} </h5></td>
+                <td><h5> {{ room.habitacion_descripcion }} </h5></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </center> -->
+    <form name='formulario' id='formulario'>
+    <table id='tabla' border="0" width="100%">
+		<thead>
+			<td><b><h4>Codigo</h4></b></td>
+            <td><b><h4>Tipo</h4></b></td>
+            <td><b><h4>Estado</h4></b></td>
+            <td><b><h4>Descripcion</h4></b></td>
+			
+		</thead>
+		<tbody>
+			{% for room in rooms %}
+            <tr >
+				<td><h5>{{ room.habitacion_codigo }} </h5></td>
+                <td><h5> {{ room.habitacion_tipo }} </h5></td>
+                <td><h5> {{ room.habitacion_estado }} </h5></td>
+                <td><h5> {{ room.habitacion_descripcion }} </h5></td>
+			</tr>
+		</tbody>
+        {% endfor %}
+	</table>
+    </form>
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>

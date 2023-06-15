@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+Mostrar Datos - Hotrl Alemania
+{% endblock%}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="mt-2 text-center">
+        <h4>
+            Tabla de datos
+        </h4>
+    </div>
+</div>
+
+<div class="container-fluid mt-4 mb-4">
+
+    <a name="" id="" class="btn btn-dark" href="{% url 'create' %}" role="button">Crear Nuevo</a>
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>ID</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">1</td>
+                    <td>Salvador Alejandro</td>
+                    <td>Gonzales</td>
+                    <td>salvadorg@gmail.com</td>
+                    <td>
+                    <a name="" id="" class="btn btn-success" href="{% url 'update' %}" role="button">Actualizar</a>
+                    <a name="" id="" class="btn btn-danger" href="{% url 'delete' %}" role="button">Eliminar</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row">2</td>
+                    <td>Liliana Michell</td>
+                    <td>Hernandez Davis</td>
+                    <td>lilianah@gmail.com</td>
+                    <td>
+                        <a name="" id="" class="btn btn-success" href="{% url 'update' %}" role="button">Actualizar</a>
+                        <a name="" id="" class="btn btn-danger" href="{% url 'delete' %}" role="button">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+    </table>
+</div>
+
+{% endblock%}
